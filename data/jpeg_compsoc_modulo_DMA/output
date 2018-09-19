@@ -1,0 +1,77 @@
+== Compiling monitor
+/opt/tools/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin/mb-gcc  -Wall -fmessage-length=0 -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mno-xl-soft-mul -mhard-float -mxl-float-convert -mxl-float-sqrt -mcpu=v8.50.c -I/home/emb17/material/monitor_nohuf/aethereal -I/home/emb17/material/platform//monitor-include -L /home/emb17/material/platform//monitor-lib /home/emb17/material/monitor_nohuf/main.c /home/emb17/material/monitor_nohuf/uart.c /home/emb17/material/monitor_nohuf/aethereal/dae_cfgbus.c /home/emb17/material/monitor_nohuf/aethereal/dae_conns.c /home/emb17/material/monitor_nohuf/aethereal/dae_funcs.c /home/emb17/material/monitor_nohuf/memctrl//memctrl_config.c /home/emb17/material/monitor_nohuf/memctrl//memctrl_driver.c -o .build/monitor.elf -T /home/emb17/material/platform//monitor.ld -DDO_IMAGE_OUTPUT -DUSE_DMA -DIMAGE_OUTPUT_HEIGHT="768" -DIMAGE_OUTPUT_WIDTH="1024" -I/home/emb17/material/platform//include/
+== Compiling core 1
+/opt/tools/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin/mb-gcc  -Wall -fmessage-length=0 -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mno-xl-soft-mul -mhard-float -mxl-float-convert -mxl-float-sqrt -mcpu=v8.50.c -O3 -Wall -std=c99 -Wl,--gc-sections -I/home/emb17/material/platform//include -I/home/emb17/material/platform//include/mb1    -Ijpeg_shared/ -L /home/emb17/material/platform//lib -DMB1 jpeg_mb1/5kk03.c jpeg_mb1/cc.c jpeg_mb1/core1.c jpeg_mb1/header_vld.c jpeg_mb1/huffman.c jpeg_mb1/idct.c jpeg_mb1/iqzz.c jpeg_mb1/raster.c jpeg_mb1/utilities.c jpeg_shared/5kk03-utils.c jpeg_shared/fifo.c -o .build/mb1.elf -T /home/emb17/material/platform//mb1.ld -Ijpeg_mb1
+== Compiling core 2
+/opt/tools/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin/mb-gcc  -Wall -fmessage-length=0 -mlittle-endian -mxl-barrel-shift -mxl-pattern-compare -mno-xl-soft-div -mno-xl-soft-mul -mhard-float -mxl-float-convert -mxl-float-sqrt -mcpu=v8.50.c -O3 -Wall -std=c99 -Wl,--gc-sections -I/home/emb17/material/platform//include -I/home/emb17/material/platform//include/mb2    -Ijpeg_shared/ -L /home/emb17/material/platform//lib -DMB2 jpeg_mb2/5kk03.c jpeg_mb2/cc.c jpeg_mb2/core2.c jpeg_mb2/header_vld.c jpeg_mb2/huffman.c jpeg_mb2/idct.c jpeg_mb2/iqzz.c jpeg_mb2/raster.c jpeg_mb2/utilities.c jpeg_shared/5kk03-utils.c jpeg_shared/fifo.c -o .build/mb2.elf -T /home/emb17/material/platform//mb2.ld -Ijpeg_mb2
+== Compiling core 3
+/opt/tools/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin/mb-gcc  -Wall -fmessage-length=0 -mlittle-endian -mno-xl-barrel-shift -mno-xl-pattern-compare -mxl-soft-div -mxl-soft-mul -msoft-float -mcpu=v8.50.c  -O3 -Wall -std=c99 -Wl,--gc-sections -I/home/emb17/material/platform//include -I/home/emb17/material/platform//include/mb3   -Ijpeg_shared/ -L /home/emb17/material/platform//lib-small -DMB3 jpeg_mb3/5kk03.c jpeg_mb3/cc.c jpeg_mb3/core3.c jpeg_mb3/header_vld.c jpeg_mb3/huffman.c jpeg_mb3/idct.c jpeg_mb3/iqzz.c jpeg_mb3/raster.c jpeg_mb3/utilities.c jpeg_shared/5kk03-utils.c jpeg_shared/fifo.c -o .build/mb3.elf -T /home/emb17/material/platform//mb3.ld -Ijpeg_mb3
+== Compiling core 4
+/opt/tools/Xilinx/14.7/ISE_DS/EDK/gnu/microblaze/lin/bin/mb-gcc  -Wall -fmessage-length=0 -mlittle-endian -mno-xl-barrel-shift -mno-xl-pattern-compare -mxl-soft-div -mxl-soft-mul -msoft-float -mcpu=v8.50.c  -O3 -Wall -std=c99 -Wl,--gc-sections -I/home/emb17/material/platform//include -I/home/emb17/material/platform//include/mb4   -Ijpeg_shared/ -L /home/emb17/material/platform//lib-small -DMB4 jpeg_mb4/5kk03.c jpeg_mb4/cc.c jpeg_mb4/core4.c jpeg_mb4/header_vld.c jpeg_mb4/huffman.c jpeg_mb4/idct.c jpeg_mb4/iqzz.c jpeg_mb4/raster.c jpeg_mb4/utilities.c jpeg_shared/5kk03-utils.c jpeg_shared/fifo.c -o .build/mb4.elf -T /home/emb17/material/platform//mb4.ld -Ijpeg_mb4
+== Building file2bin
+== Creating memory image
+ssh co8 mkdir "/tmp/.5kk03-iAOoxA1C1_5PAj4s"
+scp .build/monitor.elf .build/mb1.elf .build/mb2.elf .build/mb3.elf .build/mb4.elf .build/data.bin co8:"/tmp/.5kk03-iAOoxA1C1_5PAj4s"
+ssh co8 "/bin/bash -c \"source /opt/tools/Xilinx/14.7/settings64.sh; cd /tmp/.5kk03-iAOoxA1C1_5PAj4s; data2mem -bm /usr/share/5LIB0-2015//system_bd.bmm -bt /usr/share/5LIB0-2015//system.bit -bd mb1.elf tag mb1   -bd mb2.elf tag mb2   -bd mb3.elf tag mb3  -bd mb4.elf tag mb4 -bd monitor.elf tag monitor -o b user.bit\""
+. /opt/tools/Xilinx/14.7/ISE_DS/common/.settings64.sh /opt/tools/Xilinx/14.7/ISE_DS/common
+. /opt/tools/Xilinx/14.7/ISE_DS/EDK/.settings64.sh /opt/tools/Xilinx/14.7/ISE_DS/EDK
+. /opt/tools/Xilinx/14.7/ISE_DS/PlanAhead/.settings64.sh /opt/tools/Xilinx/14.7/ISE_DS/PlanAhead
+. /opt/tools/Xilinx/14.7/ISE_DS/ISE/.settings64.sh /opt/tools/Xilinx/14.7/ISE_DS/ISE
+ssh co8 ml-doimpact -B 3 -f "/tmp/.5kk03-iAOoxA1C1_5PAj4s/user.bit" -b 921600 -t 50 -o /tmp/.5kk03-iAOoxA1C1_5PAj4s/ttylog -i /tmp/.5kk03-iAOoxA1C1_5PAj4s/data.bin  | 5kk03_parser_nohf 
+FILE: /tmp/.5kk03-iAOoxA1C1_5PAj4s/user.bit is [31m[0m old
+Note:
+Jobs in [1;31mred[0m are scheduled using bitspooler
+Jobs in [1;035mmagenta[0m are scheduled directly
+
+Waiting |Waiting  -Waiting  \Waiting  |Waiting  /Waiting  -Waiting  \Waiting  |Waiting  /Waiting  -Waiting  \Waiting  |Waiting  /Waiting  -Waiting  \Waiting  |Waiting  /Waiting  -Waiting  \Waiting  |Waiting  /Waiting  -Waiting  \Waiting  |Waiting  /Waiting  -
+Job accepted !
+Running impact
+Looking for impact output TAIL=8516 TEMP=8513
+[1;034mBoundary-scan chain validated successfully.[0m
+2: Device Temperature: [1;31m53.82[0m C, Min. Reading:   46.44 C, Max.Reading:   54.31 C
+2: VCCINT Supply: [1;31m1.008[0m V, Min. Reading:   1.008 V, Max.Reading:   1.011 V
+2: VCCAUX Supply: [1;31m2.505[0m V, Min. Reading:   2.499 V, Max.Reading:   2.511 V
+[1;034m'2': Programming device...[0m
+[1;034m'2': Programmed successfully.[0m
+
+Board programmed !
+[1;034mGrabbing tty:
+Starting monitor
+Setup TFT controller
+Start DMA Mode
+xil_printf: Hello World!
+Received: 1
+Have to receive 142996 bytes
+131072 remaining
+114688 remaining
+98304 remaining
+81920 remaining
+65536 remaining
+49152 remaining
+32768 remaining
+16384 remaining
+0 remaining
+128: mb1_fsl: 0xFFAA
+133: mb3_fsl: 0xFFAA
+139: mb3_fsl: 0xFFAA
+145: mb4_fsl: 0xFFAA
+Tiles synced.
+MB2 timestamp: 448988041  value: 5431 (00001537)
+Core 2 done
+MB1 timestamp: 450096210  value: 5450 (0000154A)
+Core 1 done
+MB4 timestamp: 1166733073  value: 7670 (00001DF6)
+Core 4 done
+MB3 timestamp: 1167707450  value: 7678 (00001DFE)
+Core 3 done
+Program finished
+Sending over: 2359296 bytes
+
+Receiving file with size: 2359296
+Wrote to 'binary.pnm'
+
+FINISHED
+[0m
+[0m
+scp co8:/tmp/.5kk03-iAOoxA1C1_5PAj4s/ttylog response.txt
+ssh co8 "bash -c \"rm -rf /tmp/.5kk03-iAOoxA1C1_5PAj4s\""

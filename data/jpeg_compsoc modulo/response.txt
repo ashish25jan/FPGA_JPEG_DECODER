@@ -1,0 +1,29 @@
+Starting monitor
+Setup TFT controller
+Start DMA Mode
+xil_printf: Hello World!
+Received: 1
+Have to receive 289936 bytes
+278528 remaining
+262144 remaining
+245760 remaining
+229376 remaining
+212992 remaining
+196608 remaining
+180224 remaining
+163840 remaining
+147456 remaining
+131072 remaining
+114688 remaining
+98304 remaining
+81920 remaining
+65536 remaining
+49152 remaining
+32768 remaining
+16384 remaining
+0 remaining
+128: mb1_fsl: 0xFFAA
+133: mb3_fsl: 0xFFAA
+139: mb3_fsl: 0xFFAA
+145: mb4_fsl: 0xFFAA
+Tiles synced.

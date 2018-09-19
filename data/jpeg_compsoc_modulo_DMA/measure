@@ -1,0 +1,97 @@
+#!/bin/bash
+rm result
+make clean
+echo "surfer.jpg"
+make pic=imgs/surfer.jpg h=24 w=32 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/surfer.pnm
+
+make clean
+echo "alps.jpg"
+make pic=imgs/alps.jpg h=768 w=1024 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/alps.pnm
+
+make clean
+echo "blue.jpg"
+make pic=imgs/blue.jpg h=196 w=280 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/blue.pnm
+
+make clean
+echo "cat.jpg"
+make pic=imgs/cat.jpg h=600 w=519 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/cat.pnm
+
+make clean
+echo "grayscale.jpg"
+make pic=imgs/grayscale.jpg h=256 w=256 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/grayscale.pnm
+
+make clean
+echo "hres.jpg"
+make pic=imgs/hres.jpg h=768 w=1024 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/hres.pnm
+
+make clean
+echo "line.jpg"
+make pic=imgs/line.jpg h=1 w=1024 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/line.pnm
+
+make clean
+echo "noise.jpg"
+make pic=imgs/noise.jpg h=768 w=1024 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/noise.pnm
+
+make clean
+echo "pixel.jpg"
+make pic=imgs/pixel.jpg h=1 w=1 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/pixel.pnm
+
+make clean
+echo "test.jpg"
+make pic=imgs/test.jpg h=768 w=1024 run > output
+cat output| grep '^MB1' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB2' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB3' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+cat output| grep '^MB4' |awk -F ":" '{print$3}' |awk -F "(" '{print$1}'>>result
+diff binary.pnm imgs/test.pnm
+
+
+
+
+
+
